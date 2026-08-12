@@ -1,0 +1,28 @@
+{
+  "name": "@cpd/website",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "scripts": {
+    "dev": "rshono dev",
+    "build": "rshono build",
+    "start": "rshono start",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@cpd/core": "workspace:*",
+    "@cpd/react": "workspace:*",
+    "@rshono/core": "catalog:",
+    "hono": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "typescript": "catalog:"
+  }
+}

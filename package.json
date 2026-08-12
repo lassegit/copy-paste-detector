@@ -1,0 +1,21 @@
+{
+  "name": "copy-paste-detector",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.8.0",
+  "engines": {
+    "node": "^22.18.0 || >=24.11.0"
+  },
+  "scripts": {
+    "build": "pnpm -r --filter \"./packages/*\" build",
+    "dev": "pnpm -r --parallel --filter \"./packages/*\" dev",
+    "test": "pnpm -r test",
+    "typecheck": "pnpm -r typecheck",
+    "site:dev": "pnpm --filter @cpd/website dev",
+    "site:build": "pnpm --filter @cpd/website build",
+    "site:start": "pnpm --filter @cpd/website start"
+  },
+  "devDependencies": {
+    "typescript": "catalog:"
+  }
+}
