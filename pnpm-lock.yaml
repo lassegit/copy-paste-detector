@@ -6,24 +6,15 @@ settings:
 
 catalogs:
   default:
-    '@rshono/core':
-      specifier: ^1.0.0-rc.13
-      version: 1.0.0-rc.13
     '@testing-library/react':
       specifier: ^16.3.2
       version: 16.3.2
-    '@types/node':
-      specifier: ^26.1.1
-      version: 26.2.0
     '@types/react':
       specifier: ^19.2.18
       version: 19.2.18
     happy-dom:
       specifier: ^20.11.2
       version: 20.11.2
-    hono:
-      specifier: ^4.12.31
-      version: 4.13.1
     react:
       specifier: 19.2.8
       version: 19.2.8
@@ -57,26 +48,26 @@ importers:
         specifier: workspace:*
         version: link:../../packages/react
       '@rshono/core':
-        specifier: 'catalog:'
+        specifier: ^1.0.0-rc.13
         version: 1.0.0-rc.13(hono@4.13.1)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       hono:
-        specifier: 'catalog:'
+        specifier: ^4.12.31
         version: 4.13.1
       react:
-        specifier: 'catalog:'
+        specifier: 19.2.8
         version: 19.2.8
       react-dom:
-        specifier: 'catalog:'
+        specifier: 19.2.8
         version: 19.2.8(react@19.2.8)
     devDependencies:
       '@types/node':
-        specifier: 'catalog:'
+        specifier: ^26.1.1
         version: 26.2.0
       '@types/react':
-        specifier: 'catalog:'
+        specifier: ^19.2.18
         version: 19.2.18
       typescript:
-        specifier: 'catalog:'
+        specifier: ^7.0.2
         version: 7.0.2
 
   packages/core:

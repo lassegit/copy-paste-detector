@@ -15,14 +15,14 @@
   "dependencies": {
     "@cpd/core": "workspace:*",
     "@cpd/react": "workspace:*",
-    "@rshono/core": "catalog:",
-    "hono": "catalog:",
-    "react": "catalog:",
-    "react-dom": "catalog:"
+    "@rshono/core": "^1.0.0-rc.13",
+    "hono": "^4.12.31",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
   },
   "devDependencies": {
-    "@types/node": "catalog:",
-    "@types/react": "catalog:",
-    "typescript": "catalog:"
+    "@types/node": "^26.1.1",
+    "@types/react": "^19.2.18",
+    "typescript": "^7.0.2"
   }
 }
