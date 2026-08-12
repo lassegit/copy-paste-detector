@@ -1,10 +1,10 @@
-import { defineConfig } from '@rshono/core'
+import { defineConfig } from "@rshono/core";
 
 /** Workspace packages that must be bundled rather than left as runtime imports. */
-const WORKSPACE_SCOPE = '@cpd/'
+const WORKSPACE_SCOPE = "@cpd/";
 
 export default defineConfig({
-  deploy: 'node',
+  deploy: "cloudflare",
 
   /**
    * Bundle the workspace packages into the server build instead of leaving them
@@ -28,35 +28,46 @@ export default defineConfig({
    * react-server condition must be enabled".
    */
   rspack(config, { isServer }) {
-    if (!isServer) return config
+    if (!isServer) return config;
 
-    type ExternalItem = Extract<NonNullable<typeof config.externals>, readonly unknown[]>[number]
-    type ExternalsCallback = (error?: Error | null, result?: string) => void
+    type ExternalItem = Extract<
+      NonNullable<typeof config.externals>,
+      readonly unknown[]
+    >[number];
+    type ExternalsCallback = (error?: Error | null, result?: string) => void;
 
-    const originals = (Array.isArray(config.externals) ? config.externals : [config.externals]).filter(
-      (external): external is ExternalItem => external !== undefined,
-    )
-    const delegate = originals.find((external) => typeof external === 'function')
+    const originals = (
+      Array.isArray(config.externals) ? config.externals : [config.externals]
+    ).filter((external): external is ExternalItem => external !== undefined);
+    const delegate = originals.find(
+      (external) => typeof external === "function",
+    );
 
-    const bundleWorkspacePackages = (data: { request?: string }, callback: ExternalsCallback): void => {
+    const bundleWorkspacePackages = (
+      data: { request?: string },
+      callback: ExternalsCallback,
+    ): void => {
       // Calling back with no result means "nothing claimed this as external",
       // so it gets bundled. Deliberately does not consult the original.
-      if (data.request?.startsWith(WORKSPACE_SCOPE)) return callback()
+      if (data.request?.startsWith(WORKSPACE_SCOPE)) return callback();
 
-      if (typeof delegate === 'function') {
-        return (delegate as (d: unknown, c: ExternalsCallback) => void)(data, callback)
+      if (typeof delegate === "function") {
+        return (delegate as (d: unknown, c: ExternalsCallback) => void)(
+          data,
+          callback,
+        );
       }
-      return callback()
-    }
+      return callback();
+    };
 
     config.externals = [
       // Rspack accepts this callback form at runtime — rshono's own externals
       // entry uses it — but its published `ExternalItem` type only describes the
       // synchronous form. The cast is on the type, not on the behaviour.
       bundleWorkspacePackages as unknown as ExternalItem,
-      ...originals.filter((external) => typeof external !== 'function'),
-    ]
+      ...originals.filter((external) => typeof external !== "function"),
+    ];
 
-    return config
+    return config;
   },
-})
+});

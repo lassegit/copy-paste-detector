@@ -10,7 +10,8 @@
     "dev": "rshono dev",
     "build": "pnpm --filter \"@cpd/website^...\" build && rshono build",
     "start": "rshono start",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "preview": "rshono build && wrangler dev"
   },
   "dependencies": {
     "@cpd/core": "workspace:*",
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@types/node": "^26.1.1",
     "@types/react": "^19.2.18",
-    "typescript": "^7.0.2"
+    "typescript": "^7.0.2",
+    "wrangler": "^4.120.1"
   }
 }
